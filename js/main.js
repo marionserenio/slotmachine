@@ -4,33 +4,47 @@
 
 var opts = ['A','B','C','D','F'];
 
-var column1 = ['Coffee Maker', 'Teapot', 'Espresso Machine']
-
 
 
 
 function go(){
-	// addSlots($("#slots_a .wrapper"));
-	// moveSlots($("#slots_a .wrapper"));
-	// addSlots($("#slots_b .wrapper"));
-	// moveSlots($("#slots_b .wrapper"));
-	// addSlots($("#slots_c .wrapper"));
-	// moveSlots($("#slots_c .wrapper"));
-
-	moveSlots($(".column ul"));
-	addSlots($(".column ul"));
-
-
-	$('.slots').addClass('blur');
+	addSlots($("#slots_a .wrapper"));
+	moveSlots($("#slots_a .wrapper"));
+	addSlots($("#slots_b .wrapper"));
+	moveSlots($("#slots_b .wrapper"));
+	addSlots($("#slots_c .wrapper"));
+	moveSlots($("#slots_c .wrapper"));
 
 	setTimeout(function(){
-		$('.slots').removeClass('blur');
+		moveSlots($("#Coffee ul"));
+		addSlots($("#Coffee ul"));
+	}, 50);
+
+	setTimeout(function(){
+		moveSlots($("#Tea ul"));
+		addSlots($("#Tea ul"));
+		addSlots($("#Espresso ul"));
+	}, 75);
+
+	setTimeout(function(){
+		moveSlots($("#Espresso ul"));
+		addSlots($("#Espresso ul"));
+	}, 100);	
+
+
+	// $('.slot-column').addClass('blur');
+
+	setTimeout(function(){
+		$('.slot-column').removeClass('blur');
 	}, 750)
+
+
+	// $('.slot-machine2').css('height', '44px');
 }
 
 $(document).ready(
 	function(){
-		addSlots($("#slots_a .wrapper"));
+		addSlots($("#Coffee ul"));
 		addSlots($("#slots_b .wrapper"));
 		addSlots($("#slots_c .wrapper"));
 		
@@ -38,25 +52,25 @@ $(document).ready(
 );
 
 
-function addSlotsColumn1(jqo){
+function addSlots(jqo){
 	for(var i = 0; i < 15; i++){
-		var ctr = Math.floor(Math.random()*column1.length);
-		jqo.append("<li>"+column1[ctr]+"</li>");
+		var ctr = Math.floor(Math.random()*opts.length);
+		jqo.append("<li>"+opts[ctr]+"</li>");
 	}
 }
 
 function moveSlots(jqo){
-		var time = 500;
+		var time = 5400;
 		time += Math.round(Math.random()*1000);
-	jqo.stop(true,true);
+		jqo.stop(true,true);
 
 		var marginTop = parseInt(jqo.css("margin-top"), 10)
 		
-		marginTop -= (7 * 100)
+		marginTop -= (6 * 129)
 		
 	jqo.animate(
 		{"margin-top":marginTop+"px"},
-		{'duration' : time, });
+		{'duration' : time, 'easing' : "easeOutElastic"});
 
 }
 
